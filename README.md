@@ -12,6 +12,10 @@ I startup.cs filen hittar man appens services. En service är en återanvändbar
 tillbringas till hela appen via dependency injection eller ApplicationServices.
 Configure metoden bygger våran själva pipeline. Här ställer du in hur applikationen ska bete när den får in requests med hjälp utav middlewares.
 
+### program.cs
+Program.cs är det absolut första som startas när projektet startas upp. Här i program.cs säger vi vad som ska göras när applikationer startas. När man skapar en tom template så
+kan vi t.ex. se att programmet hoppar till startup.cs filen.
+
 ## Razor Pages
 I razor pages har vi 2 st filer som hänger ihop i varandra. t.ex. Index sidan har en fil "mapp" som är content page och Index.cshtml.cs som är page modeln.
 
