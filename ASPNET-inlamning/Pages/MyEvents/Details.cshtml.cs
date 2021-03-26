@@ -19,7 +19,7 @@ namespace ASPNET_inlamning.Pages.MyEvents
             _context = context;
         }
 
-        public Event Event { get; set; }
+        public AttendeeEvent AttendeeEvent { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +28,11 @@ namespace ASPNET_inlamning.Pages.MyEvents
                 return NotFound();
             }
 
-            Event = await _context.Events.FirstOrDefaultAsync(m => m.EventID == id);
+            AttendeeEvent = await _context.AttendeeEvents
+                .Include(a => a.Attendee)
+                .Include(a => a.Event).FirstOrDefaultAsync(m => m.AttendeeEventID == id);
 
-            if (Event == null)
+            if (AttendeeEvent == null)
             {
                 return NotFound();
             }
