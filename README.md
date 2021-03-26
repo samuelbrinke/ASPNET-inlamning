@@ -34,3 +34,6 @@ I model filen är var vi skapar data strukturen till databasen. Här bestämmer 
 I view filen är vad all html kod hamnar. Här bygger vi upp layouten till sidan.
 
 I Controller filen sköter hanteringen från t.ex. användarens inputs.
+
+## Commits
+Jag fick strul under inlämningens gång så jag gjorde en helt nytt repository och använde projektet som jag fick strul med som en referens när jag började om. Det är därför det ser ut som att jag började igår :)
