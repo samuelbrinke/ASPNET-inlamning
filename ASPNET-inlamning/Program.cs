@@ -17,26 +17,13 @@ namespace ASPNET_inlamning
         {
             var host = CreateHostBuilder(args).Build();
 
-            CreateDbIfNotExists(host);
-            host.Run();
-        }
-
-        private static void CreateDbIfNotExists(IHost host)
-        {
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                try
-                {
-                    var context = services.GetRequiredService<ApplicationDbContext>();
-                    context.Database.EnsureCreated();
-                    // Check if db contains data and seed it if not
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
+                var context = services.GetRequiredService<Data.ApplicationDbContext>();
+                ApplicationDbContext.Seed(context);
             }
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
