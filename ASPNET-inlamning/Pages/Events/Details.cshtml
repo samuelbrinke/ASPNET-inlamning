@@ -52,7 +52,15 @@
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Event.EventID">Edit</a> |
     <a asp-page="./Index">Back to List</a>
-    <form method="post">
-        <button type="submit">Join this event</button>
-    </form>
+    @if (Model.AttendeeIsAttending)
+    {
+        <p>See you there!</p>
+    }
+    else
+    {
+        <form method="post">
+            <button type="submit">Join this event</button>
+        </form>
+    }
+
 </div>

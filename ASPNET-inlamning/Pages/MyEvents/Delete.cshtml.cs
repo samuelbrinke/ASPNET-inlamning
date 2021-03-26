@@ -20,7 +20,7 @@ namespace ASPNET_inlamning.Pages.MyEvents
         }
 
         [BindProperty]
-        public Event Event { get; set; }
+        public AttendeeEvent AttendeeEvent { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +29,11 @@ namespace ASPNET_inlamning.Pages.MyEvents
                 return NotFound();
             }
 
-            Event = await _context.Events.FirstOrDefaultAsync(m => m.EventID == id);
+            AttendeeEvent = await _context.AttendeeEvents
+                .Include(a => a.Attendee)
+                .Include(a => a.Event).FirstOrDefaultAsync(m => m.AttendeeEventID == id);
 
-            if (Event == null)
+            if (AttendeeEvent == null)
             {
                 return NotFound();
             }
@@ -45,11 +47,11 @@ namespace ASPNET_inlamning.Pages.MyEvents
                 return NotFound();
             }
 
-            Event = await _context.Events.FindAsync(id);
+            AttendeeEvent = await _context.AttendeeEvents.FindAsync(id);
 
-            if (Event != null)
+            if (AttendeeEvent != null)
             {
-                _context.Events.Remove(Event);
+                _context.AttendeeEvents.Remove(AttendeeEvent);
                 await _context.SaveChangesAsync();
             }
 

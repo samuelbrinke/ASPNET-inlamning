@@ -43,10 +43,10 @@ namespace ASPNET_inlamning.Data
 
             context.Events.AddRange(new List<Event>()
             {
-                new Event(){Title = "Fyre Festival", Description = "This is a festival", Place = "Exuma", Address= "Bahamas", Date = new DateTime(20200101), SpotsAvalible = 300},
-                new Event(){Title = "Ultra Music Festival", Description = "Festival with good music", Place = "United States", Address= "Miami", Date = new DateTime(20200101), SpotsAvalible = 300},
-                new Event(){Title = "Tomorrowland", Description = "This is a music festival", Place = "Belgium", Address= "Belgium", Date = new DateTime(20200101), SpotsAvalible = 300},
-                new Event(){Title = "Brännbollsyran", Description = "This is a swedish festival", Place = "Umeå", Address= "Storgatan 40", Date = new DateTime(20200101), SpotsAvalible = 300}
+                new Event(){Title = "Fyre Festival", Description = "This is a festival", Place = "Exuma", Address= "Bahamas", Date = new DateTime(2023, 2, 16), SpotsAvalible = 300},
+                new Event(){Title = "Ultra Music Festival", Description = "Festival with good music", Place = "United States", Address= "Miami", Date = new DateTime(2025, 6, 23), SpotsAvalible = 300},
+                new Event(){Title = "Tomorrowland", Description = "This is a music festival", Place = "Belgium", Address= "Belgium", Date = new DateTime(2021, 1, 12), SpotsAvalible = 300},
+                new Event(){Title = "Brännbollsyran", Description = "This is a swedish festival", Place = "Umeå", Address= "Storgatan 40", Date = new DateTime(2024, 7, 9), SpotsAvalible = 300}
             });
 
             context.SaveChanges();

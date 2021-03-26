@@ -25,7 +25,7 @@ namespace ASPNET_inlamning.Pages.MyEvents
         {
             AttendeeEvent = await _context.AttendeeEvents
                 .Include(a => a.Attendee)
-                .Include(e => e.Event).ToListAsync();
+                .Include(a => a.Event).ToListAsync();
         }
     }
 }

@@ -20,7 +20,9 @@ namespace ASPNET_inlamning.Pages.Events
         }
 
         public Event Event { get; set; }
-        //public bool IsListedInThisEvent { get; set; }
+
+        [BindProperty]
+        public bool AttendeeIsAttending { get; set; } = false;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,10 +30,19 @@ namespace ASPNET_inlamning.Pages.Events
             {
                 return NotFound();
             }
-
             Event = await _context.Events
                 .Include(e => e.Organizer)
                 .FirstOrDefaultAsync(m => m.EventID == id);
+
+            AttendeeEvent attendeeEvent = await _context.AttendeeEvents
+                .Where(a => a.Attendee.AttendeeID == 1 && a.EventID == id)
+                .FirstOrDefaultAsync();
+
+            if (attendeeEvent != null)
+            {
+                AttendeeIsAttending = true;
+            }
+
             if (Event == null)
             {
                 return NotFound();
@@ -45,15 +56,6 @@ namespace ASPNET_inlamning.Pages.Events
                 return NotFound();
             }
 
-            //var Event = await _context.Events.Include(o => o.Attendees).FirstOrDefaultAsync(m => m.EventID == id);
-            //var attendeeModel = await _context.Attendees.FirstOrDefaultAsync(m => m.Name == "Samme");
-
-
-            /*            var attendeeModel2 = _context.Attendees.Where(a => a.AttendeeID == 1).FirstOrDefault();
-                        var Event2 = _context.Events.Where(e => e.EventID == id).FirstOrDefault()*/
-
-            //Event.Attendees.Add(attendeeModel);
-
             AttendeeEvent joinEvent = new AttendeeEvent()
             {
                 Attendee = await _context.Attendees.Where(a => a.Name == "Samme").FirstOrDefaultAsync(),
@@ -64,7 +66,7 @@ namespace ASPNET_inlamning.Pages.Events
 
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./index");
+            return RedirectToPage("./Details", new { id = id });
         }
     }
 }
